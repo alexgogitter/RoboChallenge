@@ -19,8 +19,8 @@ class BeaconScanner : IBeaconScanner
         else if (dx < 0) lateral = Direction.Left;
         else lateral = Direction.Up; // No lateral movement needed (erm this is an exception)
 
-        if (dy > 0) vertical = Direction.Down;
-        else if (dy < 0) vertical = Direction.Up;
+        if (dy > 0) vertical = Direction.Up;
+        else if (dy < 0) vertical = Direction.Down;
         else vertical = Direction.Up; // No lateral movement needed (erm this is an exception)
     }
 

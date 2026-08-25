@@ -33,6 +33,6 @@ class Radar : IRadar
                 break;
         }
 
-        return (uint)Math.Min(range, (int)MaxRange);
+        return (uint)Math.Min(range-1, (int)MaxRange);
     }
 }

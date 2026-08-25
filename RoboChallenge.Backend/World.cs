@@ -97,14 +97,14 @@ class World : IWorld
         // Pick a horizonal edge:
         bool left = rng.NextDouble() > 0.5;
         uint goal_x = left ? MIN_GOAL_DISTANCE_FROM_EDGE : WORLD_WIDTH - 1 - MIN_GOAL_DISTANCE_FROM_EDGE;
-        // Jitter goal x
-        goal_x += (uint)rng.Next(0, (int)(MAX_GOAL_DISTANCE_FROM_EDGE - MIN_GOAL_DISTANCE_FROM_EDGE));
+        // Jitter goal x right (if at left edge) or left (if at right edge)
+        goal_x += (uint)(rng.Next(0, (int)(MAX_GOAL_DISTANCE_FROM_EDGE - MIN_GOAL_DISTANCE_FROM_EDGE)) * (left ? 1 : -1) );
 
         // Pick a vertical edge:
         bool top = rng.NextDouble() > 0.5;
         uint goal_y = top ? MIN_GOAL_DISTANCE_FROM_EDGE : WORLD_HEIGHT - 1 - MIN_GOAL_DISTANCE_FROM_EDGE;
-        // Jitter goal y
-        goal_y += (uint)rng.Next(0, (int)(MAX_GOAL_DISTANCE_FROM_EDGE - MIN_GOAL_DISTANCE_FROM_EDGE));
+        // Jitter goal y down (if at top edge) or up (if at bottom edge)
+        goal_y += (uint)(rng.Next(0, (int)(MAX_GOAL_DISTANCE_FROM_EDGE - MIN_GOAL_DISTANCE_FROM_EDGE)) * (top ? 1 : -1) );
 
         // Clear out a space around the goal so it doesn't start in a wall:
         for (uint y = goal_y - 1; y <= goal_y + 1; ++y)
