@@ -19,7 +19,7 @@ public class RoboChallengeRunner : IRoboChallengeRunner
             // Sleep for a second.
             // Ask the robot what do to
             // Based on robot's velocity - move the robot in the world, check for collisions, check for goal found.
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
 
             robot.ClockCycle(chassis);
 

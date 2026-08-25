@@ -23,16 +23,16 @@ class ExampleRobot: IRobot
         controlBus.BeaconScanner.Detect(out Direction lateralDirectionToGoal, out Direction verticalDirectionToGoal);
 
         // Head towards the goal, but check for walls first:
-        uint lateralRange = controlBus.Radar.Scan(lateralDirectionToGoal);
-        uint verticalRange = controlBus.Radar.Scan(verticalDirectionToGoal);
+        uint xRangeToWall = controlBus.Radar.Scan(lateralDirectionToGoal);
+        uint yRangeToWall = controlBus.Radar.Scan(verticalDirectionToGoal);
 
         // Pick a direction to move in. If both directions are blocked, stop.
-        if (lateralRange > 0)
+        if (xRangeToWall > 0)
         {
             controlBus.Motor.Speed = Speed.Moving;
             controlBus.Motor.FacingDirection = lateralDirectionToGoal;
         }
-        else if (verticalRange > 0)
+        else if (yRangeToWall > 0)
         {
             controlBus.Motor.Speed = Speed.Moving;
             controlBus.Motor.FacingDirection = verticalDirectionToGoal;

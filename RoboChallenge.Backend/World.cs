@@ -10,7 +10,15 @@ class World : IWorld
     I guess it's possible to generate an unsolvable maze....
     */
     const uint WORLD_WIDTH = 70;
-    const uint WORLD_HEIGHT = 35;
+    const uint WORLD_HEIGHT = 25;
+    const uint WALL_MIN_LENGTH = 3;
+    const uint WALL_MAX_LENGTH = 15;
+    const double MIN_WALL_DENSITY = 0.1;
+    const double MAX_WALL_DENSITY = 0.4; // Do not consume more than this percentage of the board with walls
+    const uint MIN_GOAL_DISTANCE_FROM_EDGE = 3; // goal must be at least this many squares from the edge of the board
+    const uint MAX_GOAL_DISTANCE_FROM_EDGE = 7; // goal must be at most this many squares from the edge of the board
+    const bool ALLOW_WALL_CROSSING = false;
+
     private IWorld.CellContent[,] board = new IWorld.CellContent[WORLD_WIDTH, WORLD_HEIGHT];
     private Random rng;
     public uint GoalX { get; init; }
@@ -42,16 +50,6 @@ class World : IWorld
     public World()
     {
         rng = new Random();
-        const uint WALL_MIN_LENGTH = 3;
-        const uint WALL_MAX_LENGTH = 15;
-        //const uint MIN_WALLS = 10;
-        //const uint MAX_WALLS = 20;
-        const double MIN_WALL_DENSITY = 0.1;
-        const double MAX_WALL_DENSITY = 0.4; // Do not consume more than this percentage of the board with walls
-        //const double MIN_GOAL_SEPERATION = 0.65; // goal must be n% away from player start at least
-        const uint MIN_GOAL_DISTANCE_FROM_EDGE = 3; // goal must be at least this many squares from the edge of the board
-        const uint MAX_GOAL_DISTANCE_FROM_EDGE = 7; // goal must be at most this many squares from the edge of the board
-        const bool ALLOW_WALL_CROSSING = false;
 
         double wall_density = rng.NextDouble() * (MAX_WALL_DENSITY - MIN_WALL_DENSITY) + MIN_WALL_DENSITY;
         uint target_wall_square_count = (uint)(wall_density * (WORLD_HEIGHT * WORLD_WIDTH));
