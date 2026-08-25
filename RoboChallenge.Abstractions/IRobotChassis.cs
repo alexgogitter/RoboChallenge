@@ -7,6 +7,5 @@ public interface IRobotChassis
 
     IRadar Radar { get; }
     IBeaconScanner BeaconScanner { get; }
-
-    Velocity Velocity { get; set; }
+    IMotor Motor { get; }
 }

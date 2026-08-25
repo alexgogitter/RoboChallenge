@@ -12,5 +12,3 @@ public enum Direction
     Left,
     Right
 }
-
-public record Velocity(Speed speed, Direction direction);

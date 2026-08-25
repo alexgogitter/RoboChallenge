@@ -24,14 +24,14 @@ public class RoboChallengeRunner : IRoboChallengeRunner
             robot.ClockCycle(chassis);
 
             // What did the robot decide to do? Move it in the world:
-            if (chassis.Velocity.speed == Speed.Stopped)
+            if (chassis.Motor.Speed == Speed.Stopped)
             {
                 System.Console.WriteLine("Robot is stopped.");
                 continue;
             }
             try
             {
-                switch (chassis.Velocity.direction)
+                switch (chassis.Motor.FacingDirection)
                 {
                     case Direction.Up:
                         w.SetRobotPosition(w.RobotX, w.RobotY + 1);

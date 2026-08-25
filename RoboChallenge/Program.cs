@@ -29,15 +29,17 @@ class ExampleRobot: IRobot
         // Pick a direction to move in. If both directions are blocked, stop.
         if (lateralRange > 0)
         {
-            controlBus.Velocity = new Velocity(Speed.Moving, lateralDirectionToGoal);
+            controlBus.Motor.Speed = Speed.Moving;
+            controlBus.Motor.FacingDirection = lateralDirectionToGoal;
         }
         else if (verticalRange > 0)
         {
-            controlBus.Velocity = new Velocity(Speed.Moving, verticalDirectionToGoal);
+            controlBus.Motor.Speed = Speed.Moving;
+            controlBus.Motor.FacingDirection = verticalDirectionToGoal;
         }
         else
         {
-            controlBus.Velocity = new Velocity(Speed.Stopped, Direction.Up); // No movement possible
+            controlBus.Motor.Speed = Speed.Stopped; // No movement possible
         }
     }
 }
