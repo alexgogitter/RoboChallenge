@@ -14,32 +14,15 @@ class ExampleRobot : IRobot
         // Game over!
         System.Console.WriteLine("I found the beacon!");
     }
-    public void ClockCycle(IRobotChassis controlBus) // EXAMPLE CODE I DUNNO
+    public void ClockCycle(IRobotChassis controlBus)
     {
+        // TODO: use the controlbus->scanner to determine the direction to the goal
+        // TODO: use the controlbus->radar to determine if there are walls in the way
+        // TODO: make a decision about which direction to move in, and set the controlbus->motor accordingly
+        // TODO: maybe remember where you've been and what you've seen so you can backtrack if necessary
+
         // For now, just move the robot to the right.
-        //controlBus.Velocity = new Velocity(Speed.Moving, Direction.Right);
-
-        // OK. Which direction is the goal?
-        controlBus.BeaconScanner.Detect(out Direction lateralDirectionToGoal, out Direction verticalDirectionToGoal);
-
-        // Head towards the goal, but check for walls first:
-        uint xRangeToWall = controlBus.Radar.Scan(lateralDirectionToGoal);
-        uint yRangeToWall = controlBus.Radar.Scan(verticalDirectionToGoal);
-
-        // Pick a direction to move in. If both directions are blocked, stop.
-        if (xRangeToWall > 0)
-        {
-            controlBus.Motor.Speed = Speed.Moving;
-            controlBus.Motor.FacingDirection = lateralDirectionToGoal;
-        }
-        else if (yRangeToWall > 0)
-        {
-            controlBus.Motor.Speed = Speed.Moving;
-            controlBus.Motor.FacingDirection = verticalDirectionToGoal;
-        }
-        else
-        {
-            controlBus.Motor.Speed = Speed.Stopped; // No movement possible
-        }
+        controlBus.Motor.Speed = Speed.Moving;
+        controlBus.Motor.FacingDirection = Direction.Right;        
     }
 }

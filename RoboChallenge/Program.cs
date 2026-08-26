@@ -7,9 +7,9 @@ class Application
     public static void Main(string[] args)
     {
         /*
-         * Challenge 1. Write a Robot brain to navigate the maze using only the sensors provided and locate the Beacon. Avoid the Walls.
-         * Challenge 2. Modify the World/Maze Generator so that creating an unsolvable maze is impossible. Also make it stop crashing when we hit the edge of the maze (add walls!)
-         * Challenge 3. Write a new Front End to replace the Console front-end in WFP.
+         * Challenge 1. Write a Robot brain to navigate the maze using only the sensors provided and locate and move to the Beacon. Avoid the Walls.
+         * Challenge 2. Write a better World Generator that generates mazes with circular and rectangular features as well as walls. Ensure the maze is always solvable.
+         * Challenge 3. Write a new Front End to replace the Console front-end in WPF.
          */
         IRobot myRobot = new ExampleRobot();
 
@@ -18,6 +18,5 @@ class Application
         IRoboChallengeRunner runner = new Backend.RoboChallengeRunner(worldGenerator, visualiser);
 
         runner.RunChallenge(myRobot);
-
     }
 }
