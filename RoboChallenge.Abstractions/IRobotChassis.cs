@@ -4,7 +4,6 @@ public interface IRobotChassis
 {
     int X { get; }
     int Y { get; }
-
     IRadar Radar { get; }
     IBeaconScanner BeaconScanner { get; }
     IMotor Motor { get; }

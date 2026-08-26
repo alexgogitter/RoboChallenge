@@ -2,19 +2,13 @@
 
 namespace RoboChallenge.Backend;
 
-class BeaconScanner : IBeaconScanner
+class BeaconScanner(IWorld w) : IBeaconScanner
 {
-    private World world;
-    public BeaconScanner(World w)
-    {
-        world = w;
-    }
-
     public void Detect(out Direction lateral, out Direction vertical)
     {
         // Determine the direction to the goal from the robot's position:
-        int dx = (int)world.GoalX - (int)world.RobotX;
-        int dy = (int)world.GoalY - (int)world.RobotY;
+        int dx = (int)w.GoalX - (int)w.RobotX;
+        int dy = (int)w.GoalY - (int)w.RobotY;
         if (dx > 0) lateral = Direction.Right;
         else if (dx < 0) lateral = Direction.Left;
         else lateral = Direction.Up; // No lateral movement needed (erm this is an exception)
