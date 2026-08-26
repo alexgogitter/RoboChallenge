@@ -8,7 +8,8 @@ public class RoboChallengeRunner : IRoboChallengeRunner
 
     public void RunChallenge(IRobot robot)
     {
-        IWorld w = new World();
+        IWorldGenerator worldGenerator = new SimpleWorldGenerator();
+        IWorld w = new World(worldGenerator);
         IWorldVisualiser visualiser = new ConsoleWorldVisualiser();
 
         IRobotChassis chassis = new RobotChassis(w); // The interface between the robot brain and the world. Provided by the game.
