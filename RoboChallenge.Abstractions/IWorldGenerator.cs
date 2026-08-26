@@ -1,6 +1,6 @@
-﻿namespace RoboChallenge.Backend;
+﻿namespace RoboChallenge.Abstractions;
 
-interface IWorldGenerator
+public interface IWorldGenerator
 {
     IWorld.CellContent[,] GenerateWorld(out uint worldWidth, out uint worldHeight, out uint goalX, out uint goalY, out uint robotX, out uint robotY);
 }

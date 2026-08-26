@@ -1,8 +1,8 @@
-﻿namespace RoboChallenge.Backend;
+﻿namespace RoboChallenge.Backend.Concrete;
 
 using System;
-
-class ConsoleWorldVisualiser : IWorldVisualiser
+using RoboChallenge.Abstractions;
+public class ConsoleWorldVisualiser : IWorldVisualiser
 {
     public string GameStatus { get; set; } = string.Empty;
 

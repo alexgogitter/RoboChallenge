@@ -1,8 +1,8 @@
-﻿namespace RoboChallenge.Backend;
+﻿namespace RoboChallenge.Backend.Concrete;
 
 using System;
-
-class SimpleWorldGenerator : IWorldGenerator
+using RoboChallenge.Abstractions;
+public class SimpleWorldGenerator : IWorldGenerator
 {
     const uint WORLD_WIDTH = 70;
     const uint WORLD_HEIGHT = 25;

@@ -1,6 +1,6 @@
 ﻿using RoboChallenge.Abstractions;
 
-namespace RoboChallenge.Backend;
+namespace RoboChallenge.Backend.Concrete;
 
 class BeaconScanner(IWorld w) : IBeaconScanner
 {

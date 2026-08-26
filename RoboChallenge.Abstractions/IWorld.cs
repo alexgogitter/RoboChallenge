@@ -1,7 +1,7 @@
-﻿namespace RoboChallenge.Backend;
+﻿namespace RoboChallenge.Abstractions;
 using System;
 
-interface IWorld
+public interface IWorld
 {
     enum CellContent
     {

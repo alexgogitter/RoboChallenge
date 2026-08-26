@@ -2,17 +2,16 @@
 
 namespace RoboChallenge.Backend;
 
-public class RoboChallengeRunner : IRoboChallengeRunner
+public class RoboChallengeRunner(IWorldGenerator worldGenerator, IWorldVisualiser visualiser) : IRoboChallengeRunner
 {
     public const int SLEEP_TIME_MS = 500; /* 1/frame rate */
 
+
     public void RunChallenge(IRobot robot)
     {
-        IWorldGenerator worldGenerator = new SimpleWorldGenerator();
-        IWorld w = new World(worldGenerator);
-        IWorldVisualiser visualiser = new ConsoleWorldVisualiser();
+        IWorld w = new Concrete.World(worldGenerator);
 
-        IRobotChassis chassis = new RobotChassis(w); // The interface between the robot brain and the world. Provided by the game.
+        IRobotChassis chassis = new Concrete.RobotChassis(w); // The interface between the robot brain and the world. Provided by the game.
 
         visualiser.Draw(w);
 
