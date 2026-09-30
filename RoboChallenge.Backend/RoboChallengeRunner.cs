@@ -4,7 +4,7 @@ namespace RoboChallenge.Backend;
 
 public class RoboChallengeRunner(IWorldGenerator worldGenerator, IWorldVisualiser visualiser) : IRoboChallengeRunner
 {
-    public const int SLEEP_TIME_MS = 500; /* 1/frame rate */
+    public const int SLEEP_TIME_MS = 16; /* 1/frame rate */
 
 
     public void RunChallenge(IRobot robot)

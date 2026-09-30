@@ -12,4 +12,7 @@ public interface IRobot
     void ClockCycle(IRobotChassis controlBus);
     void CollidedWithWall(); // Idiot.
     void FoundBeacon(); // Game over!
+    
+    bool hasVisited(int x, int y); // Returns true if the robot has visited the cell at (x,y) before. Used for visualization of exploration.
+
 }

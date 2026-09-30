@@ -1,9 +1,11 @@
-﻿using RoboChallenge.Abstractions;
+using RoboChallenge.Abstractions;
+using RoboChallenge.Visualizer;
 
 namespace RoboChallenge;
 
-class Application
+class Program
 {
+    [STAThread]
     public static void Main(string[] args)
     {
         /*
@@ -11,12 +13,29 @@ class Application
          * Challenge 2. Write a better World Generator that generates mazes with circular and rectangular features as well as walls. Ensure the maze is always solvable.
          * Challenge 3. Write a new Front End to replace the Console front-end in WPF.
          */
-        IRobot myRobot = new ExampleRobot();
+        IRobot myRobot = new ExamRobot();
 
-        IWorldGenerator worldGenerator = new Backend.Concrete.SimpleWorldGenerator();
-        IWorldVisualiser visualiser = new Backend.Concrete.ConsoleWorldVisualiser();
+        IWorldGenerator worldGenerator = new ExamWorldGenerator();
+        WpfWorldVisualizer visualiser = new(myRobot);
+
         IRoboChallengeRunner runner = new Backend.RoboChallengeRunner(worldGenerator, visualiser);
+        System.Windows.Application app = new();
 
-        runner.RunChallenge(myRobot);
+        visualiser.Loaded += (_, _) =>
+        {
+            Task.Run(() =>
+            {
+                try
+                {
+                    runner.RunChallenge(myRobot);
+                }
+                catch (Exception ex)
+                {
+                    visualiser.GameStatus = $"Simulation error: {ex.Message}";
+                }
+            });
+        };
+
+        app.Run(visualiser);
     }
 }

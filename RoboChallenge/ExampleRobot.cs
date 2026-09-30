@@ -7,12 +7,12 @@ class ExampleRobot : IRobot
     public void CollidedWithWall()
     {
         // Oops! We hit a wall. Stop moving and try a different direction next time.
-        System.Console.WriteLine("Ouch!");
+        System.Console.WriteLine($"Ouch!");
     }
     public void FoundBeacon()
     {
         // Game over!
-        System.Console.WriteLine("I found the beacon!");
+        System.Console.WriteLine($"I found the beacon!");
     }
     public void ClockCycle(IRobotChassis controlBus)
     {
@@ -22,7 +22,15 @@ class ExampleRobot : IRobot
         // TODO: maybe remember where you've been and what you've seen so you can backtrack if necessary
 
         // For now, just move the robot to the right.
+
         controlBus.Motor.Speed = Speed.Moving;
         controlBus.Motor.FacingDirection = Direction.Right;        
+
+
+    }
+
+    public bool hasVisited(int x, int y)
+    {
+        throw new NotImplementedException();
     }
 }
